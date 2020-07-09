@@ -1,0 +1,78 @@
+<form *ngIf="quiz">
+  <h1>{{ quiz.title }}</h1>
+  <h3>{{ quiz.time }}</h3>
+
+  <div>
+    <h2>{{ quiz?.questions[indexQ].question }}</h2>
+    <mat-radio-group name="response">
+      <section class="example-section">
+        <mat-radio-button
+          class="example-margin"
+          (change)="oncheck($event, indexQ)"
+          [checked]="isCheked? ans[indexQ].choice === 'response 1' : false"
+          value="response 1"
+          >{{ quiz?.questions[indexQ].rep1 }}</mat-radio-button
+        >
+      </section>
+
+      <section class="example-section">
+        <mat-radio-button
+          class="example-margin"
+          (change)="oncheck($event, indexQ)"
+          [checked]="isCheked? ans[indexQ].choice === 'response 2' : false"
+          value="response 2"
+          >{{ quiz?.questions[indexQ].rep2 }}</mat-radio-button
+        >
+      </section>
+
+      <section class="example-section">
+        <mat-radio-button
+          class="example-margin"
+          (change)="oncheck($event, indexQ)"
+          [checked]="isCheked? ans[indexQ].choice === 'response 3' : false"
+          value="response 3"
+          >{{ quiz?.questions[indexQ].rep3 }}</mat-radio-button
+        >
+      </section>
+
+      <section class="example-section">
+        <mat-radio-button
+          class="example-margin"
+          (change)="oncheck($event, indexQ)"
+          [checked]="isCheked? ans[indexQ].choice === 'response 4' : false"
+          value="response 4"
+          >{{ quiz?.questions[indexQ].rep4 }}</mat-radio-button
+        >
+      </section>
+    </mat-radio-group>
+    <button
+      type="button"
+      mat-stroked-button
+      color="accent"
+      (click)="changeIndex(-1)"
+    >
+      Previous
+    </button>
+    <button
+      [ngClass]="{hide: indexQ == quiz.questions.length-1}"
+      type="button"
+      mat-stroked-button
+      color="accent"
+      (click)="changeIndex(1)"
+    >
+      Next
+    </button>
+    <button
+      *ngIf="indexQ == quiz.questions.length-1"
+      type="button"
+      mat-stroked-button
+      color="accent"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+    <h4>
+      Your Score is {{ score }} %
+    </h4>
+  </div>
+</form>

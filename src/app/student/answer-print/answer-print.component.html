@@ -1,0 +1,35 @@
+<div *ngIf="quiz">
+  <h3>{{ quiz.title }}</h3>
+  <h4>{{ quiz.time }} min</h4>
+  <ul>
+    <li *ngFor="let quest of quiz.questions; let i = index">
+      {{ quest.question }}
+      <ul>
+        <li
+          [ngClass]="{danger: quest.correctAnswer !== answer[i].choice 
+            && 'response 1'=== answer[i].choice}"
+        >
+          {{ quest.rep1 }}
+        </li>
+        <li
+          [ngClass]="{danger: quest.correctAnswer !== answer[i].choice 
+            && 'response 2'=== answer[i].choice}"
+        >
+          {{ quest.rep2 }}
+        </li>
+        <li
+          [ngClass]="{danger: quest.correctAnswer !== answer[i].choice 
+            && 'response 3'=== answer[i].choice}"
+        >
+          {{ quest.rep3 }}
+        </li>
+        <li
+          [ngClass]="{danger: quest.correctAnswer !== answer[i].choice 
+            && 'response 4'=== answer[i].choice}"
+        >
+          {{ quest.rep4 }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

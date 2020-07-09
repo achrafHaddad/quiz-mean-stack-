@@ -1,0 +1,27 @@
+<div *ngIf="quiz">
+  <h3>{{ quiz.title }}</h3>
+  <h4>{{ quiz.time }} min</h4>
+  <ul>
+    <li *ngFor="let quest of quiz.questions">
+      {{ quest.question }}
+      <ul>
+        <li>{{ quest.rep1 }}</li>
+        <li>{{ quest.rep2 }}</li>
+        <li>{{ quest.rep3 }}</li>
+        <li>{{ quest.rep4 }}</li>
+        <li>{{ quest.correctAnswer }}</li>
+      </ul>
+    </li>
+  </ul>
+  <button
+    mat-stroked-button
+    color="primary"
+    [routerLink]="['/edit-quiz', quiz._id]"
+  >
+    Edit
+  </button>
+  <br />
+  <button mat-stroked-button color="warn" (click)="onDelete()">
+    Delete
+  </button>
+</div>

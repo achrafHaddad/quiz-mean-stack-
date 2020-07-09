@@ -1,0 +1,39 @@
+<form [formGroup]="signForm" class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" required />
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your email</mat-label>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      formControlName="email"
+      required
+    />
+    <mat-error *ngIf="signForm.get('email').invalid"
+      >{{getErrorMessage()}}</mat-error
+    >
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your password</mat-label>
+    <input
+      matInput
+      placeholder="Password"
+      formControlName="password"
+      type="password"
+      required
+    />
+  </mat-form-field>
+  <section class="example-section">
+    <mat-checkbox formControlName="role">Coach</mat-checkbox>
+  </section>
+
+  <br />
+
+  <button type="submit" mat-stroked-button color="accent" (click)="signup()">
+    Sign Up
+  </button>
+</form>

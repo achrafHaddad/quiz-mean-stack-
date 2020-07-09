@@ -1,0 +1,22 @@
+<div *ngIf="list">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Candidate</th>
+        <th scope="col">Email</th>
+        <th scope="col">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of list">
+        <td [routerLink]="['/print', user._id, quizId]">
+          {{user.name}}
+        </td>
+        <td>{{user.email}}</td>
+        <ng-container *ngFor="let res of user.result">
+          <td *ngIf="quizId === res.quizId">{{ res.score }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>

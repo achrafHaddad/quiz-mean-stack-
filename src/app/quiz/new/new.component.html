@@ -1,0 +1,73 @@
+<form [formGroup]="quizForm">
+  <mat-form-field>
+    <input matInput formControlName="title" matInput placeholder="Quiz Title" />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="time"
+      matInput
+      placeholder="Quiz Time in Minute"
+    />
+  </mat-form-field>
+
+  <div>
+    <button
+      mat-stroked-button
+      (click)="addQuest()"
+      color="primary"
+      type="button"
+    >
+      Add question
+    </button>
+  </div>
+  <ol formArrayName="questions">
+    <li *ngFor="let quest of questions; let i = index">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input matInput formControlName="question" placeholder="Question" />
+        </mat-form-field>
+        <button
+          mat-stroked-button
+          (click)="delquest(i)"
+          color="warn"
+          type="button"
+        >
+          Delete question
+        </button>
+        <br />
+        <mat-form-field>
+          <input matInput formControlName="rep1" placeholder="Choice 1" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <input matInput formControlName="rep2" placeholder="Choice 2" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <input matInput formControlName="rep3" placeholder="Choice 3" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <input matInput formControlName="rep4" placeholder="Choice 4" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Correct Answer</mat-label>
+          <mat-select formControlName="correctAnswer" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let res of response" [value]="res.name">
+              {{res.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="quest.correctAnswer.touched"
+            >Please choose response</mat-error
+          > -->
+        </mat-form-field>
+      </div>
+    </li>
+  </ol>
+  <button type="submit" (click)="submit()" mat-stroked-button color="accent">
+    Submit
+  </button>
+</form>

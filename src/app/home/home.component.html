@@ -1,0 +1,30 @@
+<div *ngIf="list">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Time(min)</th>
+        <th scope="col">N° of questions</th>
+        <th scope="col">Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quiz of list">
+        <td
+          *ngIf="role === 'candidat'; else coach"
+          [routerLink]="['/answer', quiz._id]"
+        >
+          {{quiz.title}}
+        </td>
+        <ng-template #coach>
+          <td [routerLink]="['/detail-quiz', quiz._id]">
+            {{quiz.title}}
+          </td>
+        </ng-template>
+        <td>{{quiz.time}}</td>
+        <td>{{quiz.questions.length}}</td>
+        <td>{{ quiz.coachId.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

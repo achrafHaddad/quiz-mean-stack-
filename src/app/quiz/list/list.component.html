@@ -1,0 +1,29 @@
+<div *ngIf="list">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Time(min)</th>
+        <th scope="col">N° of questions</th>
+        <th scope="col">N° of Candidate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quiz of list">
+        <td [routerLink]="['/detail-quiz', quiz._id]">
+          {{quiz.title}}
+        </td>
+        <td>{{quiz.time}}</td>
+        <th scope="row">{{quiz.questions.length}}</th>
+        <ng-container *ngFor="let list of listAnswers">
+          <td
+            *ngIf="quiz._id === list.quizId"
+            [routerLink]="['/candidate-list', quiz._id]"
+          >
+            {{ list.count }}
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>

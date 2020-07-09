@@ -1,0 +1,22 @@
+<div *ngIf="list">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Time</th>
+        <th scope="col">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quiz of list.quiz">
+        <td [routerLink]="['/print',list._id, quiz._id]">
+          {{quiz.title}}
+        </td>
+        <td>{{quiz.time}}</td>
+        <ng-container *ngFor="let score of list.result">
+          <td *ngIf="score.quizId === quiz._id">{{ score.score }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
